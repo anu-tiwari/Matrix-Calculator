@@ -46,7 +46,7 @@ public abstract class Matrix {
         Matrix B = new Square(other.getRows(), other.getColumns(), other.getData());
         //int[][] B = other.inverse();
 
-        return this.multiply(B.inverse());
+        return this.multiply2D(B.inverse());
     }
 
     public int[][] multiply(Matrix other)
@@ -58,7 +58,7 @@ public abstract class Matrix {
         }
         if (other instanceof Column)
         {
-            other.postMultiply(this);
+            return ((Column) other).postMultiply(this);
         }
         int[][] product = new int[this.rows][other.getColumns()];
         int productRows = this.rows;
@@ -184,5 +184,10 @@ public abstract class Matrix {
     {
         System.out.println("This matrix is not square and determinant cannot be calculated");
         return 0;
+    }
+
+    public int[][] multiply2D(int[][] B)
+    {
+        return null;
     }
 }
