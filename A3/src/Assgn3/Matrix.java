@@ -56,6 +56,10 @@ public abstract class Matrix {
             System.out.println("Multiplication dimensions incorrect");
             return null;
         }
+        if (other instanceof Column)
+        {
+            other.postMultiply(this);
+        }
         int[][] product = new int[this.rows][other.getColumns()];
         int productRows = this.rows;
         int productColumns = other.getColumns();
@@ -134,5 +138,51 @@ public abstract class Matrix {
         }
         answer=answer/(this.rows*this.columns);
         return answer;
+    }
+
+    public int[][] APlusAt()
+    {
+        int[][] A = this.getData();
+        int[][] B = this.transpose();
+
+        int[][] answer = new int[this.rows][this.columns];
+
+        for(int i=0; i<this.rows; i++)
+        {
+            for (int j=0; j<this.columns; j++)
+            {
+                answer[i][j] = A[i][j]+B[i][j];
+            }
+        }
+        return answer;
+    }
+
+    public int[][] solveEq(Matrix other)
+    {
+//        if (other instanceof Column==false)
+//        {
+//            System.out.println("The second matrix is not a column matrix");
+//            return null;
+//        }
+//        if (other.getRows()!=this.rows)
+//        {
+//            System.out.println("The second matrix does not have same number of rows as first");
+//            return null;
+//        }
+//        return other.postMultiply(this.inverse());
+        System.out.println("This matrix is not square and hence linear equation can't be solved");
+        return null;
+    }
+
+    public int[][] inverse()
+    {
+        System.out.println("This matrix is not square and inverse cannot be calculated");
+        return null;
+    }
+
+    public int determinant()
+    {
+        System.out.println("This matrix is not square and determinant cannot be calculated");
+        return 0;
     }
 }
