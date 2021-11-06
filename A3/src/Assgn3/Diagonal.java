@@ -8,6 +8,24 @@ public class Diagonal extends Square{
         if (r >= 0) System.arraycopy(elements, 0, this.elements, 0, r);
     }
 
+    public static boolean isDiagonal(int[][] A, int r, int c)
+    {
+        if (r!=c)
+            return false;
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<c; j++)
+            {
+                if (i!=j)
+                {
+                    if (A[i][j]!=0)
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+
     @Override
     public int[][] getData()
     {

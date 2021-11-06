@@ -5,6 +5,21 @@ public class Symmetric extends Square{
         super(r, data, id);
     }
 
+    public static boolean isSymmetric(int[][] A, int r, int c)
+    {
+        if (r!=c)
+            return false;
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<i; j++)
+            {
+                if (A[i][j]!=A[j][i])
+                    return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public int[][] transpose()
     {

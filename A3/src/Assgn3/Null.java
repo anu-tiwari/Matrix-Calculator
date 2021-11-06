@@ -5,6 +5,19 @@ public class Null extends Matrix{
         super(r, c, id);
     }
 
+    public static boolean isNull(int[][] A, int r, int c)
+    {
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<c; j++)
+            {
+                if (A[i][j]!=0)
+                    return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public int[][] getData() {
         int[][] answer = new int[this.getRows()][this.getColumns()];

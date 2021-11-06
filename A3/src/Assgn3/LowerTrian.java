@@ -5,6 +5,21 @@ public class LowerTrian extends Square{
         super(r, data, id);
     }
 
+    public static boolean isLowerTrian(int[][] A, int r, int c)
+    {
+        if (r!=c)
+            return false;
+        for (int i=0; i<r; i++)
+        {
+            for (int j=i+1; j<c; j++)
+            {
+                if (A[i][j]!=0)
+                    return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public float determinant()
     {

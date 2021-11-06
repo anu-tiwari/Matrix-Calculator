@@ -8,6 +8,23 @@ public class Scalar extends Diagonal{
         this.element = element;
     }
 
+    public static boolean isScalar(int[][] A, int r, int c)
+    {
+        if (!Diagonal.isDiagonal(A, r, c))
+            return false;
+
+        if (r==1 && c==1)
+            return true;
+        else if(r==2 && c==2) {
+            return A[0][0] == A[1][1];
+        }
+        else if (r==3 && c==3)
+        {
+            return A[0][0] == A[1][1] && A[1][1] == A[2][2];
+        }
+        return false;
+    }
+
     @Override
     public int[][] getData()
     {

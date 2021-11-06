@@ -1,9 +1,9 @@
 package Assgn3;
 
 public abstract class Matrix {
-    private int id;
-    private int rows;
-    private int columns;
+    private final int id;
+    private final int rows;
+    private final int columns;
     //int[][] entries;
 
     Matrix(int r, int c, int i)

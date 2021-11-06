@@ -5,6 +5,21 @@ public class UpperTrian extends Square{
         super(r, data, id);
     }
 
+    public static boolean isUpperTrian(int[][] A, int r, int c)
+    {
+        if (r!=c)
+            return false;
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<i; j++)
+            {
+                if (A[i][j]!=0)
+                    return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public float determinant()
     {

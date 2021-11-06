@@ -11,6 +11,16 @@ public class Singular extends Square{
         return 0;
     }
 
+    public static boolean isSingular(int[][] A, int r, int c)
+    {
+        if (r!=c)
+            return false;
+        Square temp = new Square(r, A, -1);
+        float det = temp.determinant();
+        temp = null;
+        return det == 0;
+    }
+
     @Override
     public float[][] inverse()
     {

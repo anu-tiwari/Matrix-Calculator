@@ -8,6 +8,11 @@ public class Column extends Rectangular{
         System.arraycopy(arr, 0, elements, 0, arr.length);
     }
 
+    public static boolean isColumn(int[][] A, int r, int c)
+    {
+        return c == 1 && r != 1;
+    }
+
     @Override
     public int[][] getData()
     {

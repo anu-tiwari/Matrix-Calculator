@@ -18,6 +18,11 @@ public class Rectangular extends Matrix{
         }
     }
 
+    public static boolean isRectangular(int[][] A, int r, int c)
+    {
+        return r != c;
+    }
+
     @Override
     public int[][] getData() {
         return data;

@@ -19,6 +19,11 @@ public class Square extends Matrix{
         }
     }
 
+    public static boolean isSquare(int[][] A, int r, int c)
+    {
+        return r == c;
+    }
+
     @Override
     public int[][] getData()
     {

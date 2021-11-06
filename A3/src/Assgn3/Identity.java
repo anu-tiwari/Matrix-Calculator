@@ -5,6 +5,29 @@ public class Identity extends Scalar{
         super(r, 1, id);
     }
 
+    public static boolean isIdentity(int[][] A, int r, int c)
+    {
+        if (r!=c)
+            return false;
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<c; j++)
+            {
+                if (i==j)
+                {
+                    if (A[i][j]!=1)
+                        return false;
+                }
+                else
+                {
+                    if (A[i][j]!=0)
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+
     @Override
     public int[][] getData()
     {

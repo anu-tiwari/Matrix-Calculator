@@ -8,6 +8,11 @@ public class Singleton extends Square{
         this.element = element;
     }
 
+    public static boolean isSingleton(int[][] A, int r, int c)
+    {
+        return c == 1 && r == 1;
+    }
+
     @Override
     public int[][] getData()
     {
