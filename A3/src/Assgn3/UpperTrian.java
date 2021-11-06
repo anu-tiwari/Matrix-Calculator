@@ -1,7 +1,7 @@
 package Assgn3;
 
 public class UpperTrian extends Square{
-    UpperTrian(int r, int c, int[][] data) {
-        super(r, c, data);
+    UpperTrian(int r, int[][] data, int id) {
+        super(r, data, id);
     }
 }

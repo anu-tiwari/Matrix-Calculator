@@ -15,6 +15,6 @@ public class Rectangular extends Matrix{
 
     @Override
     public int[][] getData() {
-        return new int[0][];
+        return data;
     }
 }

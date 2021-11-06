@@ -11,18 +11,13 @@ public abstract class Matrix {
         this.rows = r;
         this.columns = c;
         this.id = i;
-//        entries = new int[this.rows][this.columns];
-//
-//        for (int i=0; i<this.rows; i++)
-//        {
-//            System.arraycopy(arr[i], 0, entries[i], 0, this.columns);
-//        }
     }
 
     public int getId()
     {
         return this.id;
     }
+
     public abstract int[][] getData();
 
     public int[][] add(Matrix other)
@@ -96,6 +91,10 @@ public abstract class Matrix {
             System.out.println("Multiplication dimensions incorrect");
             return null;
         }
+        if (other instanceof Null)
+        {
+            return other.multiply(this);
+        }
         if (other instanceof Column)
         {
             return ((Column) other).postMultiply(this);
@@ -123,7 +122,7 @@ public abstract class Matrix {
 
     public int[][] elementMul(Matrix other)
     {
-        if (other instanceof Ones)
+        if (other instanceof Ones || other instanceof Null)
         {
             return other.elementMul(this);
         }
@@ -148,6 +147,12 @@ public abstract class Matrix {
     }
     public float[][] elementDiv(Matrix other)
     {
+        if (other instanceof Null)
+        {
+            System.out.println("Can't divide element-wise by null matrix");
+            return null;
+        }
+
         if (this.rows!=other.getRows() || this.columns!=other.getColumns())
         {
             System.out.println("Dimensions not same so can't do element-wise division");
