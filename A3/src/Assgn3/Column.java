@@ -39,4 +39,27 @@ public class Column extends Rectangular{
         }
         return answer;
     }
+
+    @Override
+    public float rowMean(int row)
+    {
+        return (float) this.elements[row];
+    }
+
+    @Override
+    public float colMean(int col)
+    {
+        float sum = 0;
+        for (int ele:this.elements)
+        {
+            sum+=ele;
+        }
+        return sum;
+    }
+
+    @Override
+    public float allMean()
+    {
+        return this.colMean(0);
+    }
 }

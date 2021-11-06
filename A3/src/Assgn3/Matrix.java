@@ -91,7 +91,7 @@ public abstract class Matrix {
             System.out.println("Multiplication dimensions incorrect");
             return null;
         }
-        if (other instanceof Null)
+        if (other instanceof Null || other instanceof Identity)
         {
             return other.multiply(this);
         }
@@ -150,6 +150,12 @@ public abstract class Matrix {
         if (other instanceof Null)
         {
             System.out.println("Can't divide element-wise by null matrix");
+            return null;
+        }
+
+        if (other instanceof Ones)
+        {
+            float[][] ans = new float[this.rows][this.columns];
             return null;
         }
 
@@ -213,7 +219,7 @@ public abstract class Matrix {
         return answer;
     }
 
-    public float allMean(int col)
+    public float allMean()
     {
         int[][] A = this.getData();
         float answer = 0;
@@ -248,17 +254,6 @@ public abstract class Matrix {
 
     public float[][] solveEq(Matrix other)
     {
-//        if (other instanceof Column==false)
-//        {
-//            System.out.println("The second matrix is not a column matrix");
-//            return null;
-//        }
-//        if (other.getRows()!=this.rows)
-//        {
-//            System.out.println("The second matrix does not have same number of rows as first");
-//            return null;
-//        }
-//        return other.postMultiply(this.inverse());
         System.out.println("The first matrix is not square and hence linear equation can't be solved");
         return null;
     }
@@ -311,5 +306,17 @@ public abstract class Matrix {
             }
         }
         return answer;
+    }
+
+    public float[][] SingletonAsScalar(Matrix other, int mode)
+    {
+        System.out.println("The matrix is not singleton hence this operation cannot be performed");
+        return null;
+    }
+
+    public float[] eigenvalues()
+    {
+        System.out.println("The matrix is not square hence this eigenvalues cannot be found");
+        return null;
     }
 }

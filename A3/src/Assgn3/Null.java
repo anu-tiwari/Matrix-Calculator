@@ -69,4 +69,32 @@ public class Null extends Matrix{
 
         return this.getData();
     }
+
+    @Override
+    public float rowMean(int row)
+    {
+        return 0;
+    }
+
+    @Override
+    public float colMean(int col)
+    {
+        return 0;
+    }
+
+    @Override
+    public float allMean()
+    {
+        return 0;
+    }
+
+    @Override
+    public float[] eigenvalues()
+    {
+        float[] ans = new float[2];
+        ans[0] = 0;
+        ans[1] = 0;
+
+        return ans;
+    }
 }

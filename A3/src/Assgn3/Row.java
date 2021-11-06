@@ -42,4 +42,27 @@ public class Row extends Rectangular{
         }
         return product;
     }
+
+    @Override
+    public float rowMean(int row)
+    {
+        float sum = 0;
+        for (int ele:this.elements)
+        {
+            sum+=ele;
+        }
+        return sum;
+    }
+
+    @Override
+    public float colMean(int col)
+    {
+        return (float) this.elements[col];
+    }
+
+    @Override
+    public float allMean()
+    {
+        return this.rowMean(0);
+    }
 }

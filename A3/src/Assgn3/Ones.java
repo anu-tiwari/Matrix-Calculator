@@ -50,4 +50,22 @@ public class Ones extends Matrix{
 
         return this.getData();
     }
+
+    @Override
+    public float rowMean(int row)
+    {
+        return 1;
+    }
+
+    @Override
+    public float colMean(int col)
+    {
+        return 1;
+    }
+
+    @Override
+    public float allMean()
+    {
+        return 1;
+    }
 }

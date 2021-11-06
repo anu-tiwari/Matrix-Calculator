@@ -5,11 +5,16 @@ public class Rectangular extends Matrix{
 
     Rectangular(int r, int c, int[][] data, int id) {
         super(r, c, id);
-        this.data = new int[this.getRows()][this.getColumns()];
+        if (data!=null) {
+            this.data = new int[this.getRows()][this.getColumns()];
 
-        for (int i=0; i<this.getRows(); i++)
+            for (int i = 0; i < this.getRows(); i++) {
+                System.arraycopy(data[i], 0, this.data[i], 0, this.getColumns());
+            }
+        }
+        else
         {
-            System.arraycopy(data[i], 0, this.data[i], 0, this.getColumns());
+            this.data = null;
         }
     }
 

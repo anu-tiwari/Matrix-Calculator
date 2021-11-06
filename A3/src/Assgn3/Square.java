@@ -6,11 +6,16 @@ public class Square extends Matrix{
     Square(int r, int[][] data, int id)
     {
         super(r,r,id);
-        this.data = new int[this.getRows()][this.getColumns()];
+        if (data!=null) {
+            this.data = new int[this.getRows()][this.getColumns()];
 
-        for (int i=0; i<this.getRows(); i++)
+            for (int i = 0; i < this.getRows(); i++) {
+                System.arraycopy(data[i], 0, this.data[i], 0, this.getColumns());
+            }
+        }
+        else
         {
-            System.arraycopy(data[i], 0, this.data[i], 0, this.getColumns());
+            this.data = null;
         }
     }
 
@@ -85,5 +90,23 @@ public class Square extends Matrix{
         }
         answer = A[0][0]*(A[1][1]*A[2][2]-A[2][1]*A[1][2]) - A[0][1]*(A[1][0]*A[2][2]-A[2][0]*A[1][2]) + A[0][2]*(A[1][0]*A[2][1]-A[2][0]*A[1][1]);
         return answer;
+    }
+
+    @Override
+    public float[] eigenvalues()
+    {
+        int a=1;
+        int b;
+        int c;
+        int[][] A = this.getData();
+
+        b = (-1)*(A[0][0]+A[1][1]);
+        c = A[0][0]*A[1][1] - A[0][1]*A[1][0];
+        float det = (float) Math.sqrt(b*b - 4*a*c);
+        float[] ans = new float[2];
+        ans[0] = ((-1)*b + det)/2*a;
+        ans[1] = ((-1)*b - det)/2*a;
+
+        return ans;
     }
 }
