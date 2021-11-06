@@ -18,7 +18,33 @@ public abstract class Matrix {
     }
 
     public abstract int[][] getData();
-    public abstract void add(Matrix other);
+
+    public int[][] add(Matrix other)
+    {
+        if(other instanceof Ones || other instanceof Null || other instanceof Diagonal)
+        {
+            return other.add(this);
+        }
+
+        if (this.rows!=other.getRows() || this.columns!=other.getColumns())
+        {
+            System.out.println("Dimensions not same so can't add");
+            return null;
+        }
+
+        int[][] sum = new int[this.rows][this.columns];
+        int[][] A = this.getData();
+        int[][] B = other.getData();
+
+        for (int i=0; i<this.rows; i++)
+        {
+            for (int j=0; j<this.columns; j++)
+            {
+                sum[i][j] = A[i][j] + B[i][j];
+            }
+        }
+        return sum;
+    }
 
     public int getRows()
     {
@@ -30,7 +56,7 @@ public abstract class Matrix {
         return this.columns;
     }
 
-    public int[][] division(Matrix other)
+    public float[][] division(Matrix other)
     {
         if (other instanceof Rectangular)
         {
@@ -43,10 +69,18 @@ public abstract class Matrix {
             return null;
         }
         //int[][] A = this.getData();
-        Matrix B = new Square(other.getRows(), other.getColumns(), other.getData());
+        //Matrix B = new Square(other.getRows(), other.getColumns(), other.getData());
         //int[][] B = other.inverse();
-
-        return this.multiply2D(B.inverse());
+        float[][] temp = new float[this.rows][this.columns];
+        int[][] A = this.getData();
+        for (int i=0; i<this.rows; i++)
+        {
+            for (int j=0; j<this.columns; j++)
+            {
+                temp[i][j] =(float)A[i][j];
+            }
+        }
+        return multiply2D(temp, other.inverse(), this.getRows(), this.getColumns(), other.getRows(), other.getColumns());
     }
 
     public int[][] multiply(Matrix other)
@@ -63,7 +97,7 @@ public abstract class Matrix {
         int[][] product = new int[this.rows][other.getColumns()];
         int productRows = this.rows;
         int productColumns = other.getColumns();
-        int answer = 0;
+        int answer;
         int[][] A = this.getData();
         int[][] B = other.getData();
 
@@ -81,8 +115,48 @@ public abstract class Matrix {
         return product;
     }
 
-    public abstract int[][] elementMul(Matrix other);
-    public abstract int[][] elementDiv(Matrix other);
+    public int[][] elementMul(Matrix other)
+    {
+        if (this.rows!=other.getRows() || this.columns!=other.getColumns())
+        {
+            System.out.println("Dimensions not same so can't do element-wise multiplication");
+            return null;
+        }
+
+        int[][] sum = new int[this.rows][this.columns];
+        int[][] A = this.getData();
+        int[][] B = other.getData();
+
+        for (int i=0; i<this.rows; i++)
+        {
+            for (int j=0; j<this.columns; j++)
+            {
+                sum[i][j] = A[i][j]*B[i][j];
+            }
+        }
+        return sum;
+    }
+    public float[][] elementDiv(Matrix other)
+    {
+        if (this.rows!=other.getRows() || this.columns!=other.getColumns())
+        {
+            System.out.println("Dimensions not same so can't do element-wise division");
+            return null;
+        }
+
+        float[][] sum = new float[this.rows][this.columns];
+        int[][] A = this.getData();
+        int[][] B = other.getData();
+
+        for (int i=0; i<this.rows; i++)
+        {
+            for (int j=0; j<this.columns; j++)
+            {
+                sum[i][j] = (float)A[i][j]/(float)B[i][j];
+            }
+        }
+        return sum;
+    }
 
     public int[][] transpose()
     {
@@ -157,7 +231,7 @@ public abstract class Matrix {
         return answer;
     }
 
-    public int[][] solveEq(Matrix other)
+    public float[][] solveEq(Matrix other)
     {
 //        if (other instanceof Column==false)
 //        {
@@ -170,24 +244,57 @@ public abstract class Matrix {
 //            return null;
 //        }
 //        return other.postMultiply(this.inverse());
-        System.out.println("This matrix is not square and hence linear equation can't be solved");
+        System.out.println("The first matrix is not square and hence linear equation can't be solved");
         return null;
     }
 
-    public int[][] inverse()
+    public float[][] inverse()
     {
         System.out.println("This matrix is not square and inverse cannot be calculated");
         return null;
     }
 
-    public int determinant()
+    public float determinant()
     {
         System.out.println("This matrix is not square and determinant cannot be calculated");
         return 0;
     }
 
-    public int[][] multiply2D(int[][] B)
+    public static float[][] multiply2D(float[][] A, float[][] B, int Ar, int Ac, int Br, int Bc)
     {
-        return null;
+        if (Ar!=Bc || Ac!=Br)
+        {
+            System.out.println("Multiplication dimensions incorrect");
+            return null;
+        }
+        float[][] product = new float[Ar][Bc];
+        int answer;
+
+        for (int i = 0; i< Ar; i++)
+        {
+            for (int j = 0; j< Bc; j++)
+            {   answer = 0;
+                for (int k=0; k<Ac; k++)
+                {
+                    answer+=A[i][k]*B[k][j];
+                }
+                product[i][j] = answer;
+            }
+        }
+
+        return product;
+    }
+
+    public static float[][] multiplybyScalar(float[][] A, float B, int r, int c)
+    {
+        float[][] answer = new float[r][c];
+        for(int i=0; i<r; i++)
+        {
+            for (int j=0; j<c; j++)
+            {
+                answer[i][j] = A[i][j]/B;
+            }
+        }
+        return answer;
     }
 }

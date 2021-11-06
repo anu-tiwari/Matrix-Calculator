@@ -1,28 +1,20 @@
 package Assgn3;
 
 public class Rectangular extends Matrix{
+    private int[][] data;
 
-    Rectangular(int r, int c) {
+    Rectangular(int r, int c, int[][] data) {
         super(r, c);
+        this.data = new int[this.getRows()][this.getColumns()];
+
+        for (int i=0; i<this.getRows(); i++)
+        {
+            System.arraycopy(data[i], 0, this.data[i], 0, this.getColumns());
+        }
     }
 
     @Override
     public int[][] getData() {
-        return new int[0][];
-    }
-
-    @Override
-    public void add(Matrix other) {
-
-    }
-
-    @Override
-    public int[][] elementMul(Matrix other) {
-        return new int[0][];
-    }
-
-    @Override
-    public int[][] elementDiv(Matrix other) {
         return new int[0][];
     }
 }

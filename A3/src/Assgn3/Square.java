@@ -1,31 +1,89 @@
 package Assgn3;
 
 public class Square extends Matrix{
-    int[][] data;
+    private int[][] data;
 
-    Square(int r, int c, int[][] data)
+    Square(int r, int[][] data)
     {
-        super(r,c);
-        this.data = data;
+        super(r,r);
+        this.data = new int[this.getRows()][this.getColumns()];
+
+        for (int i=0; i<this.getRows(); i++)
+        {
+            System.arraycopy(data[i], 0, this.data[i], 0, this.getColumns());
+        }
     }
 
     @Override
-    public int[][] getData() {
-        return new int[0][];
+    public int[][] getData()
+    {
+        return this.data;
     }
 
     @Override
-    public void add(Matrix other) {
+    public float[][] inverse()
+    {
+        int[][] A = this.getData();
+        float[][] adj = new float[this.getRows()][this.getColumns()];
+        if (this.getRows()==2 && this.getColumns()==2)
+        {
+            adj[0][0] = (float)A[2][2];
+            adj[2][2] = (float)A[0][0];
+            adj[0][1] = (float)A[0][1]*(-1);
+            adj[1][0] = (float)A[1][0]*(-1);
+            return Matrix.multiplybyScalar(adj, (1/this.determinant()), 2, 2);
+        }
+        else
+        {
+            adj[0][0] = (float)A[0][0]*((float)A[1][1]*(float)A[2][2] - (float)A[2][1]*(float)A[1][2]);
+            adj[0][1] = ((float)A[0][1]*((float)A[1][0]*(float)A[2][2] - (float)A[2][0]*(float)A[1][2]))*(-1);
+            adj[0][2] = (float)A[0][2]*((float)A[1][0]*(float)A[2][1] - (float)A[2][0]*(float)A[1][1]);
+            adj[1][0] = ((float)A[1][0]*((float)A[0][1]*(float)A[2][2] - (float)A[2][1]*(float)A[0][2]))*(-1);
+            adj[1][1] = (float)A[1][1]*((float)A[0][0]*(float)A[2][2] - (float)A[2][0]*(float)A[0][2]);
+            adj[1][2] = ((float)A[1][2]*((float)A[0][0]*(float)A[2][1] - (float)A[2][0]*(float)A[0][1]))*(-1);
+            adj[2][0] = (float)A[2][0]*((float)A[0][1]*(float)A[1][2] - (float)A[1][1]*(float)A[0][2]);
+            adj[2][1] = ((float)A[2][1]*((float)A[0][0]*(float)A[1][2] - (float)A[1][0]*(float)A[0][2]))*(-1);
+            adj[2][2] = (float)A[2][2]*((float)A[0][0]*(float)A[1][1] - (float)A[2][1]*(float)A[1][2]);
+        }
+        float[][] transpose = new float[this.getColumns()][this.getRows()];
 
+        for (int i=0; i<this.getRows(); i++)
+        {
+            for (int j=0; j<this.getColumns(); j++)
+            {
+                transpose[j][i] = adj[i][j];
+            }
+        }
+        return Matrix.multiplybyScalar(transpose, (1/this.determinant()), 3, 3);
     }
 
     @Override
-    public int[][] elementMul(Matrix other) {
-        return new int[0][];
+    public float[][] solveEq(Matrix other)
+    {
+        if (!(other instanceof Column))
+        {
+            System.out.println("The second matrix is not a column matrix");
+            return null;
+        }
+        if (other.getRows()!=this.getRows())
+        {
+            System.out.println("The second matrix does not have same number of rows as first");
+            return null;
+        }
+        return ((Column) other).postMultiplywithInv(this.inverse());
     }
 
     @Override
-    public int[][] elementDiv(Matrix other) {
-        return new int[0][];
+    public float determinant()
+    {
+        float answer = 0;
+        int[][] A = this.getData();
+        if (this.getRows()==2 && this.getColumns()==2)
+        {
+            answer = A[0][0]*A[1][1] - A[0][1]*A[1][0];
+            return answer;
+        }
+        answer = A[0][0]*(A[1][1]*A[2][2]-A[2][1]*A[1][2]) - A[0][1]*(A[1][0]*A[2][2]-A[2][0]*A[1][2]) + A[0][2]*(A[1][0]*A[2][1]-A[2][0]*A[1][1]);
+        return answer;
     }
 }

@@ -7,12 +7,21 @@ public class Ones extends Matrix{
 
     @Override
     public int[][] getData() {
-        return new int[0][];
+        int[][] answer = new int[this.getRows()][this.getColumns()];
+
+        for (int i=0; i<this.getRows(); i++)
+        {
+            for (int j=0; j<this.getColumns(); j++)
+            {
+                answer[i][j] = 0;
+            }
+        }
+        return answer;
     }
 
     @Override
-    public void add(Matrix other) {
-
+    public int[][] add(Matrix other) {
+        return other.getData();
     }
 
     @Override
@@ -21,7 +30,7 @@ public class Ones extends Matrix{
     }
 
     @Override
-    public int[][] elementDiv(Matrix other) {
-        return new int[0][];
+    public float[][] elementDiv(Matrix other) {
+        return new float[0][];
     }
 }

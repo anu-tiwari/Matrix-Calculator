@@ -11,8 +11,8 @@ public class Null extends Matrix{
     }
 
     @Override
-    public void add(Matrix other) {
-
+    public int[][] add(Matrix other) {
+        return null;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class Null extends Matrix{
     }
 
     @Override
-    public int[][] elementDiv(Matrix other) {
-        return new int[0][];
+    public float[][] elementDiv(Matrix other) {
+        return new float[0][];
     }
 }
