@@ -3,8 +3,8 @@ package Assgn3;
 public class Rectangular extends Matrix{
     private int[][] data;
 
-    Rectangular(int r, int c, int[][] data) {
-        super(r, c);
+    Rectangular(int r, int c, int[][] data, int id) {
+        super(r, c, id);
         this.data = new int[this.getRows()][this.getColumns()];
 
         for (int i=0; i<this.getRows(); i++)

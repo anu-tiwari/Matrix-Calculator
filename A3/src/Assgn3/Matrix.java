@@ -1,14 +1,16 @@
 package Assgn3;
 
 public abstract class Matrix {
+    private int id;
     private int rows;
     private int columns;
     //int[][] entries;
 
-    Matrix(int r, int c)
+    Matrix(int r, int c, int i)
     {
         this.rows = r;
         this.columns = c;
+        this.id = i;
 //        entries = new int[this.rows][this.columns];
 //
 //        for (int i=0; i<this.rows; i++)
@@ -17,6 +19,10 @@ public abstract class Matrix {
 //        }
     }
 
+    public int getId()
+    {
+        return this.id;
+    }
     public abstract int[][] getData();
 
     public int[][] add(Matrix other)
@@ -117,13 +123,17 @@ public abstract class Matrix {
 
     public int[][] elementMul(Matrix other)
     {
+        if (other instanceof Ones)
+        {
+            return other.elementMul(this);
+        }
         if (this.rows!=other.getRows() || this.columns!=other.getColumns())
         {
             System.out.println("Dimensions not same so can't do element-wise multiplication");
             return null;
         }
 
-        int[][] sum = new int[this.rows][this.columns];
+        int[][] ans = new int[this.rows][this.columns];
         int[][] A = this.getData();
         int[][] B = other.getData();
 
@@ -131,10 +141,10 @@ public abstract class Matrix {
         {
             for (int j=0; j<this.columns; j++)
             {
-                sum[i][j] = A[i][j]*B[i][j];
+                ans[i][j] = A[i][j]*B[i][j];
             }
         }
-        return sum;
+        return ans;
     }
     public float[][] elementDiv(Matrix other)
     {
@@ -144,7 +154,7 @@ public abstract class Matrix {
             return null;
         }
 
-        float[][] sum = new float[this.rows][this.columns];
+        float[][] ans = new float[this.rows][this.columns];
         int[][] A = this.getData();
         int[][] B = other.getData();
 
@@ -152,10 +162,10 @@ public abstract class Matrix {
         {
             for (int j=0; j<this.columns; j++)
             {
-                sum[i][j] = (float)A[i][j]/(float)B[i][j];
+                ans[i][j] = (float)A[i][j]/(float)B[i][j];
             }
         }
-        return sum;
+        return ans;
     }
 
     public int[][] transpose()

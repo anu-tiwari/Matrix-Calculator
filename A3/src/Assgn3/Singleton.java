@@ -3,8 +3,8 @@ package Assgn3;
 public class Singleton extends Square{
     private int element;
 
-    Singleton(int element) {
-        super(1, null);
+    Singleton(int element, int id) {
+        super(1, null, id);
         this.element = element;
     }
 

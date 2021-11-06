@@ -1,18 +1,32 @@
 package Assgn3;
 
 public class Null extends Matrix{
-    Null(int r, int c) {
-        super(r, c);
+    Null(int r, int c, int id) {
+        super(r, c, id);
     }
 
     @Override
     public int[][] getData() {
-        return new int[0][];
+        int[][] answer = new int[this.getRows()][this.getColumns()];
+
+        for (int i=0; i<this.getRows(); i++)
+        {
+            for (int j=0; j<this.getColumns(); j++)
+            {
+                answer[i][j] = 0;
+            }
+        }
+        return answer;
     }
 
     @Override
     public int[][] add(Matrix other) {
-        return null;
+        if (this.getRows()!=other.getRows() || this.getColumns()!=other.getColumns())
+        {
+            System.out.println("Dimensions not same so can't add");
+            return null;
+        }
+        return other.getData();
     }
 
     @Override

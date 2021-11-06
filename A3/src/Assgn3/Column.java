@@ -2,8 +2,10 @@ package Assgn3;
 
 public class Column extends Rectangular{
     private int[] elements;
-    Column(int r) {
-        super(r, 1, null);
+
+    Column(int r, int[] arr, int id) {
+        super(r, 1, null, id);
+        System.arraycopy(arr, 0, elements, 0, arr.length);
     }
 
     @Override

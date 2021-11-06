@@ -3,9 +3,9 @@ package Assgn3;
 public class Square extends Matrix{
     private int[][] data;
 
-    Square(int r, int[][] data)
+    Square(int r, int[][] data, int id)
     {
-        super(r,r);
+        super(r,r,id);
         this.data = new int[this.getRows()][this.getColumns()];
 
         for (int i=0; i<this.getRows(); i++)
