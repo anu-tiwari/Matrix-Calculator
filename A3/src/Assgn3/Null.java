@@ -19,6 +19,17 @@ public class Null extends Matrix{
     }
 
     @Override
+    protected void changeValue(int i, int j, int a)
+    {
+    }
+
+    @Override
+    public void edit()
+    {
+        System.out.println("This is a null matrix thus it can't be edited");
+    }
+
+    @Override
     public int[][] getData() {
         int[][] answer = new int[this.getRows()][this.getColumns()];
 
@@ -109,5 +120,38 @@ public class Null extends Matrix{
         ans[1] = 0;
 
         return ans;
+    }
+
+    @Override
+    public float determinant()
+    {
+        if (this.getRows()!=this.getColumns())
+        {
+            System.out.println("This matrix is not square and determinant cannot be calculated");
+            return Integer.MIN_VALUE;
+        }
+        return 0;
+    }
+
+    public float[][] inverse()
+    {
+        if (this.getRows()!=this.getColumns())
+        {
+            System.out.println("This matrix is not square and inverse cannot be calculated");
+            return null;
+        }
+        System.out.println("This matrix is not singular and inverse cannot be calculated");
+        return null;
+    }
+
+    public float[][] solveEq(Matrix other)
+    {
+        if (this.getRows()!=this.getColumns())
+        {
+            System.out.println("The first matrix is not square and hence linear equation can't be solved");
+            return null;
+        }
+        System.out.println("The first matrix is singular and hence linear equation can't be solved");
+        return null;
     }
 }

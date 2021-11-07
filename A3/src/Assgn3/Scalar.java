@@ -26,6 +26,12 @@ public class Scalar extends Diagonal{
     }
 
     @Override
+    protected void changeValue(int i, int j, int a)
+    {
+        this.element = a;
+    }
+
+    @Override
     public int[][] getData()
     {
         int[][] ans = new int[this.getRows()][this.getColumns()];

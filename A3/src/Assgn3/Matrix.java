@@ -1,16 +1,94 @@
 package Assgn3;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public abstract class Matrix {
     private final int id;
     private final int rows;
     private final int columns;
-    //int[][] entries;
+    private ArrayList<String> labels;
+    protected static Scanner scan = new Scanner(System.in);
 
     Matrix(int r, int c, int i)
     {
         this.rows = r;
         this.columns = c;
         this.id = i;
+        labels = null;
+    }
+
+    protected static boolean checkLabels(Matrix M, int[][] temp) {
+        ArrayList<String> labels = M.getLabels();
+        for (String s: labels)
+        {
+
+        }
+        return true;
+    }
+
+    protected abstract void changeValue(int i, int j, int a);
+
+    public void edit() {
+        int[][] A = this.getData();
+        int[][] temp = new int[this.getRows()][this.getColumns()];
+
+        Matrix.arrayCopy(temp, A);
+
+        for (int i=0; i<this.getRows(); i++)
+        {
+            for (int j=0; j<this.getColumns(); j++)
+            {
+                System.out.println(A[i][j]);
+            }
+        }
+        int r, c, a, ch = 0;
+        do{
+            System.out.println("Which element do you want to change?");
+            System.out.print("Row: ");
+            r = scan.nextInt();
+            System.out.print("Column: ");
+            c = scan.nextInt();
+            if (r>=A.length || c>=A[0].length)
+            {
+                System.out.print("Out of bounds row and column entered. Try again!");
+                continue;
+            }
+            System.out.print("Enter the element: ");
+            a = scan.nextInt();
+            temp[r][c] = a;
+            if (Matrix.checkLabels(this, temp))
+            {
+                this.changeValue(r, c, a);
+                A = this.getData();
+                System.out.print("Edited successfully!");
+            }
+            else{
+                System.out.print("Making this change will change the type of the matrix. Cannot edit!");
+            }
+            Matrix.arrayCopy(temp, A);
+            System.out.print("Do you want to continue editing? (1 for yes / 2 for no)");
+            ch = scan.nextInt();
+        } while(ch==1);
+    }
+    //public abstract void changeValue();
+    public static void arrayCopy(int[][] des, int[][] src)
+    {
+        for (int i=0; i<src.length; i++)
+        {
+            System.arraycopy(src[i], 0, des[i], 0, src[i].length);
+        }
+    }
+
+    public void setLabels(ArrayList<String> list)
+    {
+        if (labels==null) {
+            labels = list;
+        }
+    }
+    public ArrayList<String> getLabels()
+    {
+        return labels;
     }
 
     public int getId()
@@ -45,6 +123,28 @@ public abstract class Matrix {
             }
         }
         return sum;
+    }
+
+    public int[][] subtract(Matrix other)
+    {
+        if (this.rows!=other.getRows() || this.columns!=other.getColumns())
+        {
+            System.out.println("Dimensions not same so can't add");
+            return null;
+        }
+
+        int[][] diff = new int[this.rows][this.columns];
+        int[][] A = this.getData();
+        int[][] B = other.getData();
+
+        for (int i=0; i<this.rows; i++)
+        {
+            for (int j=0; j<this.columns; j++)
+            {
+                diff[i][j] = A[i][j] + B[i][j];
+            }
+        }
+        return diff;
     }
 
     public int getRows()
@@ -267,7 +367,7 @@ public abstract class Matrix {
     public float determinant()
     {
         System.out.println("This matrix is not square and determinant cannot be calculated");
-        return 0;
+        return Integer.MIN_VALUE;
     }
 
     public static float[][] multiply2D(float[][] A, float[][] B, int Ar, int Ac, int Br, int Bc)
@@ -310,6 +410,21 @@ public abstract class Matrix {
 
     public float[][] SingletonAsScalar(Matrix other, int mode)
     {
+        if (this.getRows()==1 && this.getColumns()==1)
+        {
+            if(this.getData()[0][0]==1) {
+                Singleton S = new Singleton(1, -1);
+                float[][] res = S.SingletonAsScalar(other, mode);
+                S = null;
+                return res;
+            }
+            if(this.getData()[0][0]==0) {
+                Singleton S = new Singleton(0, -1);
+                float[][] res = S.SingletonAsScalar(other, mode);
+                S = null;
+                return res;
+            }
+        }
         System.out.println("The matrix is not singleton hence this operation cannot be performed");
         return null;
     }

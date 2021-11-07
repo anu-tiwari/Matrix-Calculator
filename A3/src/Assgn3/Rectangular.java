@@ -18,9 +18,20 @@ public class Rectangular extends Matrix{
         }
     }
 
+    @Override
+    protected void changeValue(int i, int j, int a)
+    {
+        this.data[i][j] = a;
+    }
+
     public static boolean isRectangular(int[][] A, int r, int c)
     {
         return r != c;
+    }
+
+    @Override
+    public void edit() {
+
     }
 
     @Override

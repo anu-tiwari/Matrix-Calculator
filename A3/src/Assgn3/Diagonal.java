@@ -27,6 +27,12 @@ public class Diagonal extends Square{
     }
 
     @Override
+    protected void changeValue(int i, int j, int a)
+    {
+        this.elements[i] = a;
+    }
+
+    @Override
     public int[][] getData()
     {
         int[][] ans = new int[this.getRows()][this.getColumns()];

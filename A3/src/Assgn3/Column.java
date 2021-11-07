@@ -14,6 +14,12 @@ public class Column extends Rectangular{
     }
 
     @Override
+    protected void changeValue(int i, int j, int a)
+    {
+        this.elements[i] = a;
+    }
+
+    @Override
     public int[][] getData()
     {
         int[][] data = new int[this.getRows()][1];
@@ -25,7 +31,19 @@ public class Column extends Rectangular{
     }
 
     public int[][] postMultiply(Matrix other){
-        return null;
+        int[][] ans = new int[other.getRows()][1];
+        int[][] A = other.getData();
+        int answer;
+
+        for (int i=0; i<other.getRows(); i++)
+        {   answer = 0;
+            for (int j=0; j<this.getRows(); j++)
+            {
+                answer+= A[i][j]*this.elements[j];
+            }
+            ans[i][0] = answer;
+        }
+        return ans;
     }
 
     public float[][] postMultiplywithInv(float[][] inv)

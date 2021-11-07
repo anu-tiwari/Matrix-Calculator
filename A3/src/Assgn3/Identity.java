@@ -29,6 +29,12 @@ public class Identity extends Scalar{
     }
 
     @Override
+    public void edit()
+    {
+        System.out.println("This is an identity matrix thus it can't be edited");
+    }
+
+    @Override
     public int[][] getData()
     {
         int[][] ans = new int[this.getRows()][this.getColumns()];

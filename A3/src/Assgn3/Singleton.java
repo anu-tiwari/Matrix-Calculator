@@ -14,6 +14,12 @@ public class Singleton extends Square{
     }
 
     @Override
+    protected void changeValue(int i, int j, int a)
+    {
+        element = a;
+    }
+
+    @Override
     public int[][] getData()
     {
         int[][] temp = new int[1][1];
@@ -57,7 +63,7 @@ public class Singleton extends Square{
 
     @Override
     public float[][] SingletonAsScalar(Matrix other, int mode)
-    {   //1 is add, 2 is sub, 3 is mul, 4 is div
+    {   //3 is mul, 4 is div
         int[][] A = other.getData();
         float[][] ans = new float[this.getRows()][this.getColumns()];
 
@@ -67,17 +73,9 @@ public class Singleton extends Square{
             {
                 if (mode==1)
                 {
-                    ans[i][j] = A[i][j]+this.element;
-                }
-                else if (mode==2)
-                {
-                    ans[i][j] = A[i][j]-this.element;
-                }
-                else if (mode==3)
-                {
                     ans[i][j] = A[i][j]*this.element;
                 }
-                else if (mode==4)
+                else if (mode==2)
                 {
                     ans[i][j] = (float)A[i][j]/this.element;
                 }

@@ -25,6 +25,12 @@ public class Square extends Matrix{
     }
 
     @Override
+    protected void changeValue(int i, int j, int a)
+    {
+        this.data[i][j] = a;
+    }
+
+    @Override
     public int[][] getData()
     {
         return this.data;
@@ -33,6 +39,11 @@ public class Square extends Matrix{
     @Override
     public float[][] inverse()
     {
+        if (this.determinant()==0)
+        {
+            System.out.println("This matrix is singular hence its inverse cannot be calculated");
+            return null;
+        }
         int[][] A = this.getData();
         float[][] adj = new float[this.getRows()][this.getColumns()];
         if (this.getRows()==2 && this.getColumns()==2)
@@ -80,7 +91,13 @@ public class Square extends Matrix{
             System.out.println("The second matrix does not have same number of rows as first");
             return null;
         }
-        return ((Column) other).postMultiplywithInv(this.inverse());
+        float[][] A = this.inverse();
+        if (A==null)
+        {
+            System.out.println("The first matrix does not have an inverse hence can't solve the linear equation");
+            return null;
+        }
+        return ((Column) other).postMultiplywithInv(A);
     }
 
     @Override

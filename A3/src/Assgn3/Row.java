@@ -14,6 +14,12 @@ public class Row extends Rectangular{
     }
 
     @Override
+    protected void changeValue(int i, int j, int a)
+    {
+        this.elements[j] = a;
+    }
+
+    @Override
     public int[][] getData()
     {
         int[][] data = new int[1][this.getColumns()];
