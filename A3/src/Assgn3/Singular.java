@@ -5,6 +5,11 @@ public class Singular extends Square{
         super(r, data, id);
     }
 
+    public static int[][] create(int r, int c)
+    {
+        return null;
+    }
+
     @Override
     public float determinant()
     {

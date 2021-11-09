@@ -25,6 +25,11 @@ public class Scalar extends Diagonal{
         return false;
     }
 
+    public static int[][] create(int r, int c)
+    {
+        return null;
+    }
+
     @Override
     protected void changeValue(int i, int j, int a)
     {

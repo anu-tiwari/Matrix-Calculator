@@ -297,7 +297,37 @@ public class Main {
     }
 
     public static void createMatrix() {
+        System.out.println("Choose which type of matrix you want to create:");
+        System.out.println("1. Square");
+        System.out.println("2. Rectangular");
+        System.out.println("3. Ones");
+        System.out.println("4. Null");
+        System.out.println("5. Symmetric");
+        System.out.println("6. Skew-Symmetric");
+        System.out.println("7. Upper Triangular");
+        System.out.println("8. Lower Triangular");
+        System.out.println("9. Singular");
+        System.out.println("10. Singleton");
+        System.out.println("11. Diagonal");
+        System.out.println("12. Scalar");
+        System.out.println("13. Identity");
+        System.out.println("14. Row");
+        System.out.println("15. Column");
+        int ch1 = scan.nextInt();
+        System.out.print("Enter number of rows:");
+        int r = scan.nextInt();
+        System.out.print("Enter number of columns:");
+        int c = scan.nextInt();
 
+        int[][] arr = null;
+        if (ch1==1)
+        {
+            arr = Square.create(r, c);
+        }
+        if (ch1==1)
+        {
+            arr = Rectangular.create(r, c);
+        }
     }
 
     public static Matrix displayAllandChoose()
@@ -551,9 +581,5 @@ public class Main {
         System.out.println("14. Solve sets of linear equations using matrices");
         System.out.println("15. Retrieve all the existing matrices (entered or created) having requested matrix-type labels");
         System.out.println("16. Exit");
-    }
-
-    public static void updateLabels(Matrix mat) {
-        ArrayList<String> labels = mat.getLabels();
     }
 }

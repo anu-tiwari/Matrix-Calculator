@@ -2,6 +2,7 @@ package Assgn3;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 public abstract class Matrix {
     private final int id;
@@ -9,6 +10,7 @@ public abstract class Matrix {
     private final int columns;
     private ArrayList<String> labels;
     protected static Scanner scan = new Scanner(System.in);
+    protected Random random = new Random();
 
     Matrix(int r, int c, int i)
     {
@@ -18,8 +20,13 @@ public abstract class Matrix {
         labels = null;
     }
 
-    protected static boolean checkLabels(Matrix M, int[][] temp, int r, int c) {
-        ArrayList<String> labels = M.getLabels();
+    private void addLabel(String s)
+    {
+        this.labels.add(s);
+    }
+
+    protected boolean checkLabels(int[][] temp, int r, int c) {
+        ArrayList<String> labels = this.getLabels();
         if (labels.contains("Square"))
         {
             if (!Square.isSquare(temp, r, c))
@@ -128,6 +135,119 @@ public abstract class Matrix {
         return true;
     }
 
+    private void updateLabels() {
+        ArrayList<String> labels = this.getLabels();
+        int[][] temp = this.getData();
+        int r = this.getRows();
+        int c = this.getColumns();
+
+        if (!labels.contains("Square"))
+        {
+            if (Square.isSquare(temp, r, c))
+            {
+                this.addLabel("Square");
+            }
+        }
+        if (!labels.contains("Rectangular"))
+        {
+            if (Rectangular.isRectangular(temp, r, c))
+            {
+                this.addLabel("Rectangular");
+            }
+        }
+        if (!labels.contains("Ones"))
+        {
+            if (Ones.isOnes(temp, r, c))
+            {
+                this.addLabel("Ones");
+            }
+        }
+        if (!labels.contains("Null"))
+        {
+            if (Null.isNull(temp, r, c))
+            {
+                this.addLabel("Null");
+            }
+        }
+        if (!labels.contains("Row"))
+        {
+            if (Row.isRow(temp, r, c))
+            {
+                this.addLabel("Row");
+            }
+        }
+        if (!labels.contains("Column"))
+        {
+            if (Column.isColumn(temp, r, c))
+            {
+                this.addLabel("Column");
+            }
+        }
+        if (!labels.contains("Upper Triangular"))
+        {
+            if (UpperTrian.isUpperTrian(temp, r, c))
+            {
+                this.addLabel("Upper Triangular");
+            }
+        }
+        if (!labels.contains("Lower Triangular"))
+        {
+            if (LowerTrian.isLowerTrian(temp, r, c))
+            {
+                this.addLabel("Lower Triangular");
+            }
+        }
+        if (!labels.contains("Symmetric"))
+        {
+            if (Symmetric.isSymmetric(temp, r, c))
+            {
+                this.addLabel("Symmetric");
+            }
+        }
+        if (!labels.contains("Skew-Symmetric"))
+        {
+            if (SkewSymmetric.isSkewSymmetric(temp, r, c))
+            {
+                this.addLabel("Skew-Symmetric");
+            }
+        }
+        if (!labels.contains("Singular"))
+        {
+            if (Singular.isSingular(temp, r, c))
+            {
+                this.addLabel("Singular");
+            }
+        }
+        if (!labels.contains("Singleton"))
+        {
+            if (Singleton.isSingleton(temp, r, c))
+            {
+                this.addLabel("Singleton");
+            }
+        }
+        if (!labels.contains("Diagonal"))
+        {
+            if (Diagonal.isDiagonal(temp, r, c))
+            {
+                this.addLabel("Diagonal");
+            }
+        }
+        if (!labels.contains("Scalar"))
+        {
+            if (Scalar.isScalar(temp, r, c))
+            {
+                this.addLabel("Scalar");
+            }
+        }
+        if (!labels.contains("Identity"))
+        {
+            if (Identity.isIdentity(temp, r, c))
+            {
+                this.addLabel("Identity");
+            }
+        }
+    }
+
     protected abstract void changeValue(int i, int j, int a);
 
     public void edit() {
@@ -158,12 +278,12 @@ public abstract class Matrix {
             System.out.print("Enter the element: ");
             a = scan.nextInt();
             temp[r][c] = a;
-            if (Matrix.checkLabels(this, temp, this.getRows(), this.getColumns()))
+            if (this.checkLabels(temp, this.getRows(), this.getColumns()))
             {
                 this.changeValue(r, c, a);
                 A = this.getData();
                 System.out.print("Edited successfully!");
-                Main.updateLabels(this);
+                this.updateLabels();
             }
             else{
                 System.out.print("Making this change will change the type of the matrix. Cannot edit!");

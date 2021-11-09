@@ -20,6 +20,11 @@ public class Symmetric extends Square{
         return true;
     }
 
+    public static int[][] create(int r, int c)
+    {
+        return null;
+    }
+
     @Override
     public int[][] transpose()
     {

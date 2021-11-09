@@ -28,6 +28,13 @@ public class Identity extends Scalar{
         return true;
     }
 
+    public static int[][] create(int r, int c)
+    {
+        int[][] arr = new int[r][c];
+        arr[0][0] = 1;
+        return arr;
+    }
+
     @Override
     public void edit()
     {

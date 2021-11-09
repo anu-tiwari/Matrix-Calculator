@@ -8,6 +8,11 @@ public class Row extends Rectangular{
         System.arraycopy(arr, 0, elements, 0, arr.length);
     }
 
+    public static int[][] create(int r, int c)
+    {
+        return null;
+    }
+
     public static boolean isRow(int[][] A, int r, int c)
     {
         return r == 1 && c != 1;

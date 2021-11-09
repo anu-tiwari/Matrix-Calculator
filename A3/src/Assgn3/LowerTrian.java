@@ -20,6 +20,11 @@ public class LowerTrian extends Square{
         return true;
     }
 
+    public static int[][] create(int r, int c)
+    {
+        return null;
+    }
+
     @Override
     public float determinant()
     {
