@@ -27,6 +27,7 @@ public class Square extends Matrix{
     public static int[][] create(int r, int c)
     {
         int[][] arr = new int[r][c];
+        return null;
     }
 
     @Override
