@@ -1,5 +1,7 @@
 package Assgn3;
 
+import java.util.Arrays;
+
 public class Column extends Rectangular{
     private int[] elements;
 

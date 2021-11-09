@@ -1,6 +1,7 @@
 package Assgn3;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -84,10 +85,11 @@ public class Main {
                 {
                     for (int j=0; j<M.getColumns(); j++)
                     {
-                        System.out.println(arr[i][j]+"    ");
+                        System.out.print(arr[i][j]+"    ");
                     }
                     System.out.println();
                 }
+                System.out.println();
             }
         }
     }
@@ -442,12 +444,12 @@ public class Main {
         else if (ch1==15)
         {
             arr = Column.create(r, c);
-            int[] temp = new int[r];
-            for (int i=0; i<r; i++)
+            int[] temp = new int[arr.length];
+            for (int i=0; i<arr.length; i++)
             {
                 temp[i] = arr[i][0];
             }
-            M = new Column(c, temp, ++count);
+            M = new Column(r, temp, ++count);
         }
         else{
             System.out.println("Wrong number entered");
@@ -456,11 +458,11 @@ public class Main {
         ArrayList<String> S = new ArrayList<>();
         M.setLabels(S);
         M.updateLabels();
-        System.out.println("The matrix created is: ");
+        System.out.println("The matrix created with id " + M.getId()+" is: ");
         int[][] temp = M.getData();
-        for (int i=0; i<r; i++)
+        for (int i=0; i<M.getRows(); i++)
         {
-            for (int j=0; j<c; j++)
+            for (int j=0; j<M.getColumns(); j++)
             {
                 System.out.print(temp[i][j]+"    ");
             }
@@ -569,8 +571,8 @@ public class Main {
         {
             if (mat==null)
             {
-                int[] ele = new int[c];
-                for (int i=0; i<c; i++)
+                int[] ele = new int[r];
+                for (int i=0; i<r; i++)
                 {
                     ele[i] = arr[i][0];
                 }
