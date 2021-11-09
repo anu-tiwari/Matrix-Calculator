@@ -311,7 +311,7 @@ public class Main {
             {
                 for (int j=0; j<mat.getColumns(); j++)
                 {
-                    System.out.print(A[i][j]+" ");
+                    System.out.print(A[i][j]+"    ");
                 }
                 System.out.println();
             }
@@ -551,5 +551,9 @@ public class Main {
         System.out.println("14. Solve sets of linear equations using matrices");
         System.out.println("15. Retrieve all the existing matrices (entered or created) having requested matrix-type labels");
         System.out.println("16. Exit");
+    }
+
+    public static void updateLabels(Matrix mat) {
+        ArrayList<String> labels = mat.getLabels();
     }
 }

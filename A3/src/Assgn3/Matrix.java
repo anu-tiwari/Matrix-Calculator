@@ -18,11 +18,112 @@ public abstract class Matrix {
         labels = null;
     }
 
-    protected static boolean checkLabels(Matrix M, int[][] temp) {
+    protected static boolean checkLabels(Matrix M, int[][] temp, int r, int c) {
         ArrayList<String> labels = M.getLabels();
-        for (String s: labels)
+        if (labels.contains("Square"))
         {
-
+            if (!Square.isSquare(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Rectangular"))
+        {
+            if (!Rectangular.isRectangular(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Ones"))
+        {
+            if (!Ones.isOnes(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Null"))
+        {
+            if (!Null.isNull(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Row"))
+        {
+            if (!Row.isRow(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Column"))
+        {
+            if (!Column.isColumn(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Upper Triangular"))
+        {
+            if (!UpperTrian.isUpperTrian(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Lower Triangular"))
+        {
+            if (!LowerTrian.isLowerTrian(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Symmetric"))
+        {
+            if (!Symmetric.isSymmetric(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Skew-Symmetric"))
+        {
+            if (!SkewSymmetric.isSkewSymmetric(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Singular"))
+        {
+            if (!Singular.isSingular(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Singleton"))
+        {
+            if (!Singleton.isSingleton(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Diagonal"))
+        {
+            if (!Diagonal.isDiagonal(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Scalar"))
+        {
+            if (!Scalar.isScalar(temp, r, c))
+            {
+                return false;
+            }
+        }
+        if (labels.contains("Identity"))
+        {
+            if (!Identity.isIdentity(temp, r, c))
+            {
+                return false;
+            }
         }
         return true;
     }
@@ -57,11 +158,12 @@ public abstract class Matrix {
             System.out.print("Enter the element: ");
             a = scan.nextInt();
             temp[r][c] = a;
-            if (Matrix.checkLabels(this, temp))
+            if (Matrix.checkLabels(this, temp, this.getRows(), this.getColumns()))
             {
                 this.changeValue(r, c, a);
                 A = this.getData();
                 System.out.print("Edited successfully!");
+                Main.updateLabels(this);
             }
             else{
                 System.out.print("Making this change will change the type of the matrix. Cannot edit!");
@@ -71,7 +173,7 @@ public abstract class Matrix {
             ch = scan.nextInt();
         } while(ch==1);
     }
-    //public abstract void changeValue();
+
     public static void arrayCopy(int[][] des, int[][] src)
     {
         for (int i=0; i<src.length; i++)
