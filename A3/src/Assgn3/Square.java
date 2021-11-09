@@ -61,8 +61,8 @@ public class Square extends Matrix{
         float[][] adj = new float[this.getRows()][this.getColumns()];
         if (this.getRows()==2 && this.getColumns()==2)
         {
-            adj[0][0] = (float)A[2][2];
-            adj[2][2] = (float)A[0][0];
+            adj[0][0] = (float)A[1][1];
+            adj[1][1] = (float)A[0][0];
             adj[0][1] = (float)A[0][1]*(-1);
             adj[1][0] = (float)A[1][0]*(-1);
             return Matrix.multiplybyScalar(adj, (1/this.determinant()), 2, 2);
@@ -118,6 +118,8 @@ public class Square extends Matrix{
     {
         float answer = 0;
         int[][] A = this.getData();
+        if (this.getRows()==1 && this.getColumns()==1)
+            return (float) A[0][0];
         if (this.getRows()==2 && this.getColumns()==2)
         {
             answer = A[0][0]*A[1][1] - A[0][1]*A[1][0];

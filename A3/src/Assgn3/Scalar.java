@@ -4,7 +4,7 @@ public class Scalar extends Diagonal{
     private int element;
 
     Scalar(int r, int element, int id) {
-        super(r, null, id);
+        super(r, new int[r], id);
         this.element = element;
     }
 

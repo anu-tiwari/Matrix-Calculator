@@ -72,7 +72,7 @@ public class Singleton extends Square{
     public float[][] SingletonAsScalar(Matrix other, int mode)
     {   //3 is mul, 4 is div
         int[][] A = other.getData();
-        float[][] ans = new float[this.getRows()][this.getColumns()];
+        float[][] ans = new float[other.getRows()][other.getColumns()];
 
         for (int i=0; i<other.getRows(); i++)
         {

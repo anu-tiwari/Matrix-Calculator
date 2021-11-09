@@ -3,9 +3,10 @@ package Assgn3;
 public class Diagonal extends Square{
     private int[] elements;
 
-    Diagonal(int r, int[] elements, int id) {
+    Diagonal(int r, int[] ele, int id) {
         super(r, null, id);
-        if (r >= 0) System.arraycopy(elements, 0, this.elements, 0, r);
+        this.elements = new int[r];
+        System.arraycopy(ele, 0, this.elements, 0, r);
     }
 
     public static boolean isDiagonal(int[][] A, int r, int c)

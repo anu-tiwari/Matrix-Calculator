@@ -624,7 +624,7 @@ public abstract class Matrix {
         {
             for (int j=0; j<c; j++)
             {
-                answer[i][j] = A[i][j]/B;
+                answer[i][j] = A[i][j]*B;
             }
         }
         return answer;

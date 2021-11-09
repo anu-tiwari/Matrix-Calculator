@@ -39,12 +39,56 @@ public class Main {
     }
 
     public static void retrieve() {
-        System.out.println("Choose a matrix: ");
-        Matrix A = displayAllandChoose();
-        ArrayList<String> l = A.getLabels();
-        for (String lab: l)
+        System.out.println("Choose a matrix type: ");
+        System.out.println("1. Square");
+        System.out.println("2. Rectangular");
+        System.out.println("3. Ones");
+        System.out.println("4. Null");
+        System.out.println("5. Symmetric");
+        System.out.println("6. Skew-Symmetric");
+        System.out.println("7. Upper Triangular");
+        System.out.println("8. Lower Triangular");
+        System.out.println("9. Singular");
+        System.out.println("10. Singleton");
+        System.out.println("11. Diagonal");
+        System.out.println("12. Scalar");
+        System.out.println("13. Identity");
+        System.out.println("14. Row");
+        System.out.println("15. Column");
+        int ch1 = scan.nextInt();
+        String s=null;
+        switch (ch1) {
+            case 1 -> s = "Square";
+            case 2 -> s = "Rectangular";
+            case 3 -> s = "Ones";
+            case 4 -> s = "Null";
+            case 5 -> s = "Symmetric";
+            case 6 -> s = "Skew-Symmetric";
+            case 7 -> s = "Upper Triangular";
+            case 8 -> s = "Lower Triangular";
+            case 9 -> s = "Singular";
+            case 10 -> s = "Singleton";
+            case 11 -> s = "Diagonal";
+            case 12 -> s = "Scalar";
+            case 13 -> s = "Identity";
+            case 14 -> s = "Row";
+            case 15 -> s = "Column";
+        }
+        for (Matrix M: matrices)
         {
-            System.out.println(lab);
+            if (M.getLabels().contains(s))
+            {
+                System.out.println("Id: "+M.getId());
+                int[][] arr = M.getData();
+                for (int i=0; i<M.getRows(); i++)
+                {
+                    for (int j=0; j<M.getColumns(); j++)
+                    {
+                        System.out.println(arr[i][j]+"    ");
+                    }
+                    System.out.println();
+                }
+            }
         }
     }
 
@@ -59,7 +103,7 @@ public class Main {
         System.out.println("The result is: ");
         for (float[] re : res) {
             for (int j = 0; j < res[0].length; j++) {
-                System.out.print(re[j]);
+                System.out.print(re[j]+"    ");
             }
             System.out.println();
         }
@@ -71,7 +115,7 @@ public class Main {
         float[] res = A.eigenvalues();
         if(res==null)
             return;
-        System.out.println("The eigenvalues are: "+res[0]+" "+res[1]);
+        System.out.println("The eigenvalues are: "+res[0]+"   "+res[1]);
     }
 
     public static void APlusAt() {
@@ -83,7 +127,7 @@ public class Main {
         System.out.println("A+At is: ");
         for (int[] re : res) {
             for (int j = 0; j < res[0].length; j++) {
-                System.out.print(re[j]);
+                System.out.print(re[j]+"    ");
             }
             System.out.println();
         }
@@ -105,7 +149,7 @@ public class Main {
         System.out.println("The result is: ");
         for (float[] re : res) {
             for (int j = 0; j < res[0].length; j++) {
-                System.out.print(re[j]);
+                System.out.print(re[j]+"    ");
             }
             System.out.println();
         }
@@ -159,7 +203,7 @@ public class Main {
         System.out.println("The inverse is: ");
         for (float[] re : res) {
             for (int j = 0; j < res[0].length; j++) {
-                System.out.print(re[j]);
+                System.out.print(re[j]+"    ");
             }
             System.out.println();
         }
@@ -172,7 +216,7 @@ public class Main {
         System.out.println("The transpose is: ");
         for (int[] re : res) {
             for (int j = 0; j < res[0].length; j++) {
-                System.out.print(re[j]);
+                System.out.print(re[j]+"    ");
             }
             System.out.println();
         }
@@ -195,7 +239,7 @@ public class Main {
             System.out.println("The product is: ");
             for (int[] re : res) {
                 for (int j = 0; j < res[0].length; j++) {
-                    System.out.print(re[j]);
+                    System.out.print(re[j]+"    ");
                 }
                 System.out.println();
             }
@@ -236,7 +280,7 @@ public class Main {
             System.out.println("The sum is: ");
             for (int[] re : res) {
                 for (int j = 0; j < res[0].length; j++) {
-                    System.out.print(re[j]);
+                    System.out.print(re[j]+"    ");
                 }
                 System.out.println();
             }
@@ -248,7 +292,7 @@ public class Main {
             System.out.println("The difference is: ");
             for (int[] re : res) {
                 for (int j = 0; j < res[0].length; j++) {
-                    System.out.print(re[j]);
+                    System.out.print(re[j]+"    ");
                 }
                 System.out.println();
             }
@@ -260,7 +304,7 @@ public class Main {
             System.out.println("The product is: ");
             for (int[] re : res) {
                 for (int j = 0; j < res[0].length; j++) {
-                    System.out.print(re[j]);
+                    System.out.print(re[j]+"    ");
                 }
                 System.out.println();
             }
@@ -272,7 +316,7 @@ public class Main {
             System.out.println("The quotient is: ");
             for (float[] re : res) {
                 for (int j = 0; j < res[0].length; j++) {
-                    System.out.print(re[j]);
+                    System.out.print(re[j]+"    ");
                 }
                 System.out.println();
             }
@@ -289,6 +333,7 @@ public class Main {
         for (String s : l) {
             System.out.println(s);
         }
+        System.out.println("_________________________________________________________");
     }
 
     public static void editMatrix() {
@@ -408,7 +453,8 @@ public class Main {
             System.out.println("Wrong number entered");
             return;
         }
-        M.setLabels(null);
+        ArrayList<String> S = new ArrayList<>();
+        M.setLabels(S);
         M.updateLabels();
         System.out.println("The matrix created is: ");
         int[][] temp = M.getData();
@@ -416,9 +462,11 @@ public class Main {
         {
             for (int j=0; j<c; j++)
             {
-                System.out.println(temp[i][j]+"    ");
+                System.out.print(temp[i][j]+"    ");
             }
+            System.out.println();
         }
+        System.out.println();
         addMatrix(M);
     }
 
@@ -450,7 +498,7 @@ public class Main {
         rows = scan.nextInt();
         System.out.print("Enter number of columns: ");
         cols = scan.nextInt();
-        System.out.print("Enter the elements row-wise");
+        System.out.println("Enter the elements row-wise");
         int[][] arr = new int[rows][cols];
         for (int i=0; i<rows; i++)
         {
@@ -459,8 +507,19 @@ public class Main {
                 arr[i][j] = scan.nextInt();
             }
         }
+
         Matrix mat = assignTypeandLabels(arr, rows, cols);
         addMatrix(mat);
+        System.out.println("This matrix is created with id "+mat.getId());
+        for (int i=0; i<rows; i++)
+        {
+            for (int j=0; j<cols; j++)
+            {
+                System.out.print(arr[i][j]+"    ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 
     private static void addMatrix(Matrix M)
@@ -478,10 +537,7 @@ public class Main {
             {
                 mat = new Null(r, c, ++count);
             }
-            else
-            {
-                labels.add("Null");
-            }
+            labels.add("Null");
         }
         if (Ones.isOnes(arr, r, c))
         {
@@ -489,10 +545,7 @@ public class Main {
             {
                 mat = new Ones(r, c, ++count);
             }
-            else
-            {
-                labels.add("Ones");
-            }
+            labels.add("Ones");
         }
         if (Singleton.isSingleton(arr, r, c))
         {
@@ -500,10 +553,7 @@ public class Main {
             {
                 mat = new Singleton(arr[0][0], ++count);
             }
-            else
-            {
-                labels.add("Singleton");
-            }
+            labels.add("Singleton");
         }
         if (Row.isRow(arr, r, c))
         {
@@ -513,26 +563,20 @@ public class Main {
                 System.arraycopy(arr[0], 0, ele, 0, c);
                 mat = new Row(c, ele, ++count);
             }
-            else
-            {
-                labels.add("Row");
-            }
+            labels.add("Row");
         }
         if (Column.isColumn(arr, r, c))
         {
             if (mat==null)
             {
                 int[] ele = new int[c];
-                for (int i=0; i<r; i++)
+                for (int i=0; i<c; i++)
                 {
                     ele[i] = arr[i][0];
                 }
                 mat = new Column(r, ele, ++count);
             }
-            else
-            {
-                labels.add("Column");
-            }
+            labels.add("Column");
         }
         if (Identity.isIdentity(arr, r, c))
         {
@@ -540,10 +584,7 @@ public class Main {
             {
                 mat = new Identity(r, ++count);
             }
-            else
-            {
-                labels.add("Identity");
-            }
+            labels.add("Identity");
         }
         if (Scalar.isScalar(arr, r, c))
         {
@@ -551,10 +592,7 @@ public class Main {
             {
                 mat = new Scalar(r, arr[0][0], ++count);
             }
-            else
-            {
-                labels.add("Scalar");
-            }
+            labels.add("Scalar");
         }
         if (Diagonal.isDiagonal(arr, r, c))
         {
@@ -567,10 +605,7 @@ public class Main {
                 }
                 mat = new Diagonal(r, ele, ++count);
             }
-            else
-            {
-                labels.add("Diagonal");
-            }
+            labels.add("Diagonal");
         }
         if (UpperTrian.isUpperTrian(arr, r, c))
         {
@@ -578,10 +613,7 @@ public class Main {
             {
                 mat = new UpperTrian(r, arr, ++count);
             }
-            else
-            {
-                labels.add("Upper Triangular");
-            }
+            labels.add("Upper Triangular");
         }
         if (LowerTrian.isLowerTrian(arr, r, c))
         {
@@ -589,10 +621,7 @@ public class Main {
             {
                 mat = new LowerTrian(r, arr, ++count);
             }
-            else
-            {
-                labels.add("Lower Triangular");
-            }
+            labels.add("Lower Triangular");
         }
         if (Symmetric.isSymmetric(arr, r, c))
         {
@@ -600,10 +629,7 @@ public class Main {
             {
                 mat = new Symmetric(r, arr, ++count);
             }
-            else
-            {
-                labels.add("Symmetric");
-            }
+            labels.add("Symmetric");
         }
         if (SkewSymmetric.isSkewSymmetric(arr, r, c))
         {
@@ -611,10 +637,7 @@ public class Main {
             {
                 mat = new SkewSymmetric(r, arr, ++count);
             }
-            else
-            {
-                labels.add("Skew-Symmetric");
-            }
+            labels.add("Skew-Symmetric");
         }
         if (Singular.isSingular(arr, r, c))
         {
@@ -622,10 +645,7 @@ public class Main {
             {
                 mat = new Singular(r, arr, ++count);
             }
-            else
-            {
-                labels.add("Singular");
-            }
+            labels.add("Singular");
         }
         if (Square.isSquare(arr, r, c))
         {
@@ -633,10 +653,7 @@ public class Main {
             {
                 mat = new Square(r, arr, ++count);
             }
-            else
-            {
-                labels.add("Square");
-            }
+            labels.add("Square");
         }
         if (Rectangular.isRectangular(arr, r, c))
         {
@@ -644,10 +661,7 @@ public class Main {
             {
                 mat = new Rectangular(r, c, arr, ++count);
             }
-            else
-            {
-                labels.add("Rectangular");
-            }
+            labels.add("Rectangular");
         }
         assert mat != null;
         mat.setLabels(labels);

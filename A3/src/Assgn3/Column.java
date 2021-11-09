@@ -5,7 +5,11 @@ public class Column extends Rectangular{
 
     Column(int r, int[] arr, int id) {
         super(r, 1, null, id);
-        System.arraycopy(arr, 0, elements, 0, arr.length);
+        elements = new int[r];
+        for (int i=0; i<r; i++)
+        {
+            elements[i] = arr[i];
+        }
     }
 
     public static int[][] create(int r, int c)

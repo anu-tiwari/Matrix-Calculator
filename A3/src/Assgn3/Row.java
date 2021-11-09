@@ -5,7 +5,11 @@ public class Row extends Rectangular{
 
     Row(int c, int[] arr, int id) {
         super(1, c, null, id);
-        System.arraycopy(arr, 0, elements, 0, arr.length);
+        elements = new int[c];
+        for (int i=0; i<c; i++)
+        {
+            elements[i] = arr[i];
+        }
     }
 
     public static int[][] create(int r, int c)
