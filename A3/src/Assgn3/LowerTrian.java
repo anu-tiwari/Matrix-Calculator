@@ -22,7 +22,18 @@ public class LowerTrian extends Square{
 
     public static int[][] create(int r, int c)
     {
-        return null;
+        int[][] arr = new int[r][c];
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<c; j++)
+            {
+                if (j>i)
+                    arr[i][j] = 0;
+                else
+                    arr[i][j] = random.nextInt(20);
+            }
+        }
+        return arr;
     }
 
     @Override

@@ -10,7 +10,9 @@ public class Singleton extends Square{
 
     public static int[][] create(int r, int c)
     {
-        return null;
+        int[][] arr = new int[1][1];
+        arr[0][0] = random.nextInt(20);
+        return arr;
     }
 
     public static boolean isSingleton(int[][] A, int r, int c)

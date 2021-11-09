@@ -7,7 +7,16 @@ public class Singular extends Square{
 
     public static int[][] create(int r, int c)
     {
-        return null;
+        int num = random.nextInt(20);
+        int[][] arr = new int[r][c];
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<c; j++)
+            {
+                arr[i][j] = num;
+            }
+        }
+        return arr;
     }
 
     @Override

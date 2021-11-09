@@ -10,7 +10,7 @@ public abstract class Matrix {
     private final int columns;
     private ArrayList<String> labels;
     protected static Scanner scan = new Scanner(System.in);
-    protected Random random = new Random();
+    protected static Random random = new Random();
 
     Matrix(int r, int c, int i)
     {
@@ -135,7 +135,7 @@ public abstract class Matrix {
         return true;
     }
 
-    private void updateLabels() {
+    protected void updateLabels() {
         ArrayList<String> labels = this.getLabels();
         int[][] temp = this.getData();
         int r = this.getRows();

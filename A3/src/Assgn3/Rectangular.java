@@ -20,7 +20,15 @@ public class Rectangular extends Matrix{
 
     public static int[][] create(int r, int c)
     {
-        return null;
+        int[][] arr = new int[r][c];
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<c; j++)
+            {
+                arr[i][j] = random.nextInt(20);
+            }
+        }
+        return arr;
     }
 
     @Override

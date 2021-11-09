@@ -27,7 +27,14 @@ public class Square extends Matrix{
     public static int[][] create(int r, int c)
     {
         int[][] arr = new int[r][c];
-        return null;
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<c; j++)
+            {
+                arr[i][j] = random.nextInt(20);
+            }
+        }
+        return arr;
     }
 
     @Override

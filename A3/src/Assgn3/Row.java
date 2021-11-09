@@ -10,7 +10,15 @@ public class Row extends Rectangular{
 
     public static int[][] create(int r, int c)
     {
-        return null;
+        int[][] arr = new int[1][c];
+        for (int i=0; i<1; i++)
+        {
+            for (int j=0; j<c; j++)
+            {
+                arr[i][j] = random.nextInt(20);
+            }
+        }
+        return arr;
     }
 
     public static boolean isRow(int[][] A, int r, int c)

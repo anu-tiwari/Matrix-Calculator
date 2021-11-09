@@ -10,7 +10,15 @@ public class Column extends Rectangular{
 
     public static int[][] create(int r, int c)
     {
-        return null;
+        int[][] arr = new int[r][1];
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<1; j++)
+            {
+                arr[i][j] = random.nextInt(20);
+            }
+        }
+        return arr;
     }
 
     public static boolean isColumn(int[][] A, int r, int c)

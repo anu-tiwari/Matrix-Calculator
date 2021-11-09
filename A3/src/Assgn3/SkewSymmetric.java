@@ -22,7 +22,18 @@ public class SkewSymmetric extends Square{
 
     public static int[][] create(int r, int c)
     {
-        return null;
+        int num;
+        int[][] arr = new int[r][c];
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<i; j++)
+            {
+                num = random.nextInt(20);
+                arr[i][j] = num;
+                arr[j][i] = (-1)*num;
+            }
+        }
+        return arr;
     }
 
     @Override

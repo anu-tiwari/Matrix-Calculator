@@ -1,5 +1,7 @@
 package Assgn3;
 
+import jdk.jshell.Diag;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -314,20 +316,112 @@ public class Main {
         System.out.println("14. Row");
         System.out.println("15. Column");
         int ch1 = scan.nextInt();
+
         System.out.print("Enter number of rows:");
         int r = scan.nextInt();
         System.out.print("Enter number of columns:");
         int c = scan.nextInt();
 
-        int[][] arr = null;
+        int[][] arr;
+        Matrix M;
         if (ch1==1)
         {
             arr = Square.create(r, c);
+            M = new Square(r, arr, ++count);
         }
-        if (ch1==1)
+        else if (ch1==2)
         {
             arr = Rectangular.create(r, c);
+            M = new Rectangular(r, c, arr, ++count);
         }
+        else if (ch1==3)
+        {
+            M = new Ones(r, c, ++count);
+        }
+        else if (ch1==4)
+        {
+            M = new Null(r, c, ++count);
+        }
+        else if (ch1==5)
+        {
+            arr = Symmetric.create(r, c);
+            M = new Symmetric(r, arr, ++count);
+        }
+        else if (ch1==6)
+        {
+            arr = SkewSymmetric.create(r, c);
+            M = new SkewSymmetric(r, arr, ++count);
+        }
+        else if (ch1==7)
+        {
+            arr = UpperTrian.create(r, c);
+            M = new UpperTrian(r, arr, ++count);
+        }
+        else if (ch1==8)
+        {
+            arr = LowerTrian.create(r, c);
+            M = new LowerTrian(r, arr, ++count);
+        }
+        else if (ch1==9)
+        {
+            arr = Singular.create(r, c);
+            M = new Singular(r, arr, ++count);
+        }
+        else if (ch1==10)
+        {
+            arr = Singleton.create(r, c);
+            M = new Singleton(arr[0][0], ++count);
+        }
+        else if (ch1==11)
+        {
+            arr = Diagonal.create(r, c);
+            int[] temp = new int[r];
+            for (int i=0; i<r; i++)
+            {
+                temp[i] = arr[i][i];
+            }
+            M = new Diagonal(r, temp, ++count);
+        }
+        else if (ch1==12)
+        {
+            arr = Scalar.create(r, c);
+            M = new Scalar(r, arr[0][0], ++count);
+        }
+        else if (ch1==13)
+        {
+            M = new Identity(r, ++count);
+        }
+        else if (ch1==14)
+        {
+            arr = Row.create(r, c);
+            M = new Row(c, arr[0], ++count);
+        }
+        else if (ch1==15)
+        {
+            arr = Column.create(r, c);
+            int[] temp = new int[r];
+            for (int i=0; i<r; i++)
+            {
+                temp[i] = arr[i][0];
+            }
+            M = new Column(c, temp, ++count);
+        }
+        else{
+            System.out.println("Wrong number entered");
+            return;
+        }
+        M.setLabels(null);
+        M.updateLabels();
+        System.out.println("The matrix created is: ");
+        int[][] temp = M.getData();
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<c; j++)
+            {
+                System.out.println(temp[i][j]+"    ");
+            }
+        }
+        addMatrix(M);
     }
 
     public static Matrix displayAllandChoose()
